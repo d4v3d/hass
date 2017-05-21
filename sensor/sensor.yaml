@@ -1,0 +1,73 @@
+- platform: darksky
+  api_key: !secret darksky_key
+  forecast: [1, 2, 3]
+  monitored_conditions:
+    - summary
+    - precip_type
+    - temperature
+    - apparent_temperature
+    - wind_speed
+    - wind_bearing
+    - cloud_cover
+    - humidity
+    - temperature_min
+    - temperature_max
+- platform: nest
+  monitored_conditions:
+    - 'co_status'
+    - 'smoke_status'
+- platform: template
+  sensors:
+    coat_closet_status:
+      value_template: '{% if is_state("sensor.coat_closet_door_alarm_level_10_1", "0") %}Closed{% else %}Open{% endif %}'
+      friendly_name: Coat Closet Status
+    master_closet_status:
+      value_template: '{% if is_state("sensor.master_closet_door_alarm_level_11_1", "0") %}Closed{% else %}Open{% endif %}'
+      friendly_name: Master Closet Status
+    front_door_status:
+      value_template: '{% if is_state("sensor.front_door_alarm_level_13_1", "0") %}Closed{% else %}Open{% endif %}'
+      friendly_name: Front Door Status
+    entry_garage_door_status:
+      value_template: '{% if is_state("sensor.entry_garage_door_alarm_level_12_1", "0") %}Closed{% else %}Open{% endif %}'
+      friendly_name: Entry Garage Door Status
+    coat_closet_battery:
+      value_template: '{{states.zwave.coat_closet_door_10.attributes.battery_level}}'
+      icon_template: '{% if states.zwave.coat_closet_door_10.attributes.battery_level == 100 %}mdi:battery{% elif states.zwave.coat_closet_door_10.attributes.battery_level == 0 %}mdi:battery-alert{% else %}mdi:battery-{{states.zwave.coat_closet_door_10.attributes.battery_level}}{% endif %}'
+      friendly_name: Coat Closet Door
+      unit_of_measurement: '%'
+    master_closet_battery:
+      value_template: '{{states.zwave.master_closet_door_11.attributes.battery_level}}'
+      icon_template: '{% if states.zwave.master_closet_door_11.attributes.battery_level == 100 %}mdi:battery{% elif states.zwave.master_closet_door_11.attributes.battery_level == 0 %}mdi:battery-alert{% else %}mdi:battery-{{states.zwave.master_closet_door_11.attributes.battery_level}}{% endif %}'
+      friendly_name: Master Closet Door
+      unit_of_measurement: '%'
+    front_door_battery:
+      value_template: '{{states.zwave.front_door_13.attributes.battery_level}}'
+      icon_template: '{% if states.zwave.front_door_13.attributes.battery_level == 100 %}mdi:battery{% elif states.zwave.front_door_13.attributes.battery_level == 0 %}mdi:battery-alert{% else %}mdi:battery-{{states.zwave.front_door_13.attributes.battery_level}}{% endif %}'
+      friendly_name: Front Door
+      unit_of_measurement: '%'
+    entry_garage_door_battery:
+      value_template: '{{states.zwave.entry_garage_door_12.attributes.battery_level}}'
+      icon_template: '{% if states.zwave.entry_garage_door_12.attributes.battery_level == 100 %}mdi:battery{% elif states.zwave.entry_garage_door_12.attributes.battery_level == 0 %}mdi:battery-alert{% else %}mdi:battery-{{states.zwave.entry_garage_door_12.attributes.battery_level}}{% endif %}'
+      friendly_name: Entry Garage Door
+      unit_of_measurement: '%'
+    display_sun:
+      value_template: '{{states.sun.sun.state}}'
+      icon_template: '{% if is_state("sun.sun", "above_horizon") %}mdi:weather-sunny{% else %}mdi:weather-night{% endif %}'
+      friendly_name: Sun
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /
+    - type: memory_use_percent
+    - type: since_last_boot
+- platform: speedtest
+  minute:
+    - 0
+    - 30
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+#  - platform: cert_expiry
+#    host: dadykhoff.no-ip.biz
+- platform: cpuspeed

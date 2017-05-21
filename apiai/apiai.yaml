@@ -1,0 +1,66 @@
+intents:
+  climate.getTemperature:
+    speech: The temperature is {{ states.climate.upstairs.attributes.temperature }} degrees.
+  climate.getHumidity:
+    speech: The humidity is {{ states.climate.upstairs.attributes.actual_humidity}} percent.
+  light.onoff:
+      speech: Turning {{ room_friendly }} lights {{ on_off }}
+      action:
+        - service_template: >
+            {%- if on_off == "on" -%}
+              switch.turn_on
+            {%- else -%}
+              switch.turn_off
+            {%- endif -%}
+          data_template:
+            entity_id: "switch.light_{{ room_friendly | replace(' ', '_') }}"
+  light.brightness:
+    speech: >
+      {% for state in states %}
+        {%- if state.entity_id.split(".")[1] == room -%}
+          Setting the brightness to {{ api_percentage }} for {{ state.name }} lights.
+        {%- endif -%}
+      {% endfor %}
+    action:
+      - service_template: >
+          {%- set switches = ["outside_lights_switch_6_0", "upstairs_hall_switch_14_0", "downstairs_hallway_switch_17_0", "downstairs_stairway_switch_15_0"] -%}
+          {%- set groups = ["upstairs_lights", "downstairs_lights", "inside_lights"] -%}
+          {%- if room in switches -%}
+            switch.turn_on
+          {%- else -%}
+            light.turn_on
+          {%- endif -%}
+        data_template:
+          entity_id: >
+            {%- set switches = ["outside_lights_switch_6_0", "upstairs_hall_switch_14_0", "downstairs_hallway_switch_17_0", "downstairs_stairway_switch_15_0"] -%}
+            {%- set groups = ["upstairs_lights", "downstairs_lights", "inside_lights"] -%}
+            {%- if room in switches -%}
+              {%- set prefix = "switch." -%}
+            {%- elif room in groups -%}
+              {%- set prefix = "group." -%}
+            {%- else -%}
+              {%- set prefix = "light." -%}
+            {%- endif -%}
+            {{ prefix }}{{ room }}
+          brightness: >
+            {%- set perc_val = api_percentage | replace('%', '') | int -%}
+            {%- set val = ((perc_val / 100) * 255) | int -%}
+            {{ val }}
+  light.query:
+    speech: >
+      {%- if on_off != "" and states.switch["light_" + room_friendly | replace(' ', '_')].state == on_off -%}
+        Yes.
+      {%- elif on_off != "" and states.switch["light_" + room_friendly | replace(' ', '_')].state != on_off -%}
+        No, the lights are {{ states.switch["light_" + room_friendly | replace(' ', '_')].state }}.
+      {%- else -%}
+        The {{ room }} lights are {{ states.switch["light_" + room_friendly | replace(' ', '_')].state }}.
+      {%- endif -%}
+  location.query:
+    speech: >
+      {%- for state in states.device_tracker-%}
+        {%- if state.name.lower() == person.lower() -%}
+          {{ state.name }} is at {{ state.state }}.
+        {%- endif -%}
+      {%- else -%}
+        Sorry, I don't know where {{ person }} is.
+      {%- endfor -%}

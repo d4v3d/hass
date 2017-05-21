@@ -1,0 +1,30 @@
+usb_path: /dev/ttyACM0
+config_path: /srv/hass/src/python-openzwave/openzwave/config
+device_config:
+  light.dining_room_light_level_8_0:
+    delay: 5
+    refresh_value: true
+  light.entry_light_level_7_0:
+    delay: 5
+    refresh_value: true
+  light.kitchen_light_level_5_0:
+    delay: 5
+    refresh_value: true
+  light.recessed_lights_level_9_0:
+    delay: 5
+    refresh_value: true
+  switch.outside_lights_switch_6_0:
+    delay: 5
+    refresh_value: true
+  light.family_room_recessed_lights_level_16_0:
+    delay: 5
+    refresh_value: true
+  switch.upstairs_hall_switch_14_0:
+    delay: 5
+    refresh_value: true
+  switch.downstairs_hallway_switch_17_0:
+    delay: 5
+    refresh_value: true
+  switch.downstairs_stairway_switch_15_0:
+    delay: 5
+    refresh_value: true

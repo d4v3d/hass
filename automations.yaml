@@ -1,0 +1,144 @@
+- id: startup_notification
+  alias: Startup Notification
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    service: ifttt.trigger
+    data: {"event":"hass_startup_notification", "value1":"HASS back online."}
+
+- id: outdoor_lights_sunset_on
+  alias: Outdoor Lights On at Sunset
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:30:00"
+  action:
+    service: homeassistant.turn_on
+    entity_id: switch.outside_lights_switch_6_0
+
+- id: outdoor_lights_sunrise_off
+  alias: Outdoor Lights Off at Sunrise
+  trigger:
+    platform: sun
+    event: sunrise
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.outside_lights_switch_6_0
+
+- id: coat_closet_on_door_open
+  alias: Coat Closet Light ON With Door Open
+  trigger:
+    platform: state
+    entity_id: sensor.coat_closet_status
+    state: Open
+  action:
+    service: homeassistant.turn_on
+    entity_id: light.coat_closet
+
+- id: coat_closet_off_door_closed
+  alias: Coat Closet Light OFF With Door Closed
+  trigger:
+    platform: state
+    entity_id: sensor.coat_closet_status
+    state: Closed
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.coat_closet
+
+- id: master_closet_on_door_open
+  alias: Master BR Closet Light ON With Door Open
+  trigger:
+    platform: state
+    entity_id: sensor.master_closet_status
+    state: Open
+  action:
+    service: homeassistant.turn_on
+    entity_id: light.master_bedroom_closet
+
+- id: master_closet_off_door_closed
+  alias: Master BR Closet Light OFF With Door Closed
+  trigger:
+    platform: state
+    entity_id: sensor.master_closet_status
+    state: Closed
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.master_bedroom_closet
+
+- id: entry_on_door_open_night
+  alias: Entry Light ON On Enter At Night
+  trigger:
+    platform: state
+    entity_id: sensor.entry_garage_door_status, sensor.front_door_status
+    state: Open
+  condition:
+    condition: or
+    conditions:
+      - condition: sun
+        after: sunset
+        after_offset: "-0:30:00"
+      - condition: sun
+        before: sunrise
+  action:
+    service: light.turn_on
+    entity_id: light.entry_light_level_7_0
+    data:
+      brightness: 25
+
+- id: announce_front_door
+  alias: Announce Front Door
+  trigger:
+    platform: state
+    entity_id: sensor.front_door_status
+    from: Closed
+    to: Open
+  action:
+    service: tts.google_say
+    entity_id: media_player.whole_house
+    data:
+      message: "Front Door Opened"
+
+- id: minimote_1
+  alias: Minimote Button 1 Short Press
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: minimote_20
+        scene_id: 1
+  action:
+    service_template: script.toggle_red_bedside
+
+- id: minimote_3
+  alias: Minimote Button 2 Short Press
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: minimote_20
+        scene_id: 3
+  action:
+    service_template: script.toggle_dim_bedside
+
+- id: minimote_5
+  alias: Minimote Button 3 Short Press
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: minimote_20
+        scene_id: 5
+  action:
+    service_template: script.toggle_bright_bedside
+
+- id: minimote_7
+  alias: Minimote Button 4 Short Press
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: minimote_20
+        scene_id: 7
+  action:
+    service_template: script.toggle_colorloop_bedside

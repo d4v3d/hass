@@ -1,0 +1,135 @@
+us:
+  name: Us
+  entities:
+    - device_tracker.emily
+    - device_tracker.devin
+lights:
+  name: Lights
+  entities:
+    - switch.outside_lights_switch_6_0
+    - light.entry_light_level_7_0
+    - light.dining_room_light_level_8_0
+    - light.recessed_lights_level_9_0
+    - light.kitchen_light_level_5_0
+    - light.bedside_lamp
+    - light.master_bedroom_closet
+    - light.coat_closet
+    - light.family_room_recessed_lights_level_16_0
+    - switch.upstairs_hall_switch_14_0
+    - switch.downstairs_hallway_switch_17_0
+    - switch.downstairs_stairway_switch_15_0
+inside_lights:
+  name: Indoor Lights
+  entities:
+    - light.entry_light_level_7_0
+    - light.dining_room_light_level_8_0
+    - light.recessed_lights_level_9_0
+    - light.kitchen_light_level_5_0
+    - light.family_room_recessed_lights_level_16_0
+    - switch.upstairs_hall_switch_14_0
+    - switch.downstairs_hallway_switch_17_0
+    - switch.downstairs_stairway_switch_15_0
+sunset_lights:
+  entities:
+    - light.dining_room_light_level_8_0
+    - light.entry_light_level_7_0
+climate:
+  name: Climate
+  entities:
+    - climate.upstairs
+    - sensor.upstairs_humidity
+    - sensor.upstairs_temperature
+    - sensor.downstairs_temperature
+    - binary_sensor.downstairs_occupancy
+    - binary_sensor.upstairs_occupancy
+upstairs_lights:
+  name: Upstairs Lights
+  entities:
+    - light.entry_light_level_7_0
+    - light.dining_room_light_level_8_0
+    - light.recessed_lights_level_9_0
+    - light.kitchen_light_level_5_0
+    - switch.upstairs_hall_switch_14_0
+downstairs_lights:
+    - light.family_room_recessed_lights_level_16_0
+    - switch.downstairs_hallway_switch_17_0
+    - switch.downstairs_stairway_switch_15_0
+door_sensors:
+  name: Doors
+  entities:
+    - sensor.front_door_status
+    - sensor.entry_garage_door_status
+    - sensor.coat_closet_status
+    - sensor.master_closet_status
+upstairs_smoke_alarm:
+  name: Upstairs Smoke Alarm
+  entities:
+    - binary_sensor.upstairs_nest_protect_online
+    - sensor.upstairs_nest_protect_battery_health
+    - sensor.upstairs_nest_protect_co_status
+    - sensor.upstairs_nest_protect_smoke_status
+downstairs_smoke_alarms:
+  name: Downstairs Smoke Alarm
+  entities:
+    - binary_sensor.downstairs_nest_protect_online
+    - sensor.downstairs_nest_protect_battery_health
+    - sensor.downstairs_nest_protect_co_status
+    - sensor.downstairs_nest_protect_smoke_status
+system:
+  name: System
+  entities:
+    - sensor.cpu_speed
+    - sensor.disk_use_
+    - sensor.ram_use
+    - sensor.since_last_boot
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.speedtest_ping
+#      - sensor.ssl_certificate_expiry
+sensor_batteries:
+  name: Sensor Battery Levels
+  entities:
+    - sensor.coat_closet_battery
+    - sensor.master_closet_battery
+    - sensor.front_door_battery
+    - sensor.entry_garage_door_battery
+
+###########################################################
+##                       VIEWS                           ##
+###########################################################
+
+default_view:
+  view: yes
+  entities:
+    - group.us
+    - group.climate
+    - sun.sun
+    - sensor.display_sun
+    - sensor.yr_symbol
+upstairs_tab:
+  name: Upstairs
+  view: yes
+  entities: 
+    - group.upstairs_lights
+    - media_player.living_room
+    - media_player.kitchen_home
+    - media_player.whole_house
+    - group.upstairs_smoke_alarm
+    - group.door_sensors
+downstairs_tab:
+  name: Downstairs
+  view: yes
+  entities: 
+    - group.downstairs_lights
+    - media_player.whole_house
+    - media_player.family_room_home
+    - group.downstairs_smoke_alarms
+system_tab:
+  name: System
+  view: yes
+  entities:
+    - group.system
+    - group.sensor_batteries
+    - group.all_automations
+    - group.all_scripts
+    - weblink.router

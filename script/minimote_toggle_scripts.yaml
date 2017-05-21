@@ -1,0 +1,68 @@
+toggle_red_bedside:
+  sequence:
+  - service_template: script.toggle_red_bedside_{% if is_state('light.bedside_lamp', 'off') %}on{% else %}off{% endif %}
+
+toggle_red_bedside_on:
+  sequence:
+      - service: light.turn_on
+        entity_id: light.bedside_lamp
+        data:
+          brightness: 40
+          rgb_color: [ 255, 0, 0]
+          color_temp: 369
+
+toggle_red_bedside_off:
+  sequence:
+      - service: light.turn_off
+        entity_id: light.bedside_lamp
+
+toggle_dim_bedside:
+  sequence:
+  - service_template: script.toggle_dim_bedside_{% if is_state('light.bedside_lamp', 'off') %}on{% else %}off{% endif %}
+
+toggle_dim_bedside_on:
+  sequence:
+      - service: light.turn_on
+        entity_id: light.bedside_lamp
+        data:
+          brightness: 20
+          color_temp: 369
+
+toggle_dim_bedside_off:
+  sequence:
+      - service: light.turn_off
+        entity_id: light.bedside_lamp
+
+toggle_bright_bedside:
+  sequence:
+  - service_template: script.toggle_bright_bedside_{% if is_state('light.bedside_lamp', 'off') %}on{% else %}off{% endif %}
+
+toggle_bright_bedside_on:
+  sequence:
+      - service: light.turn_on
+        entity_id: light.bedside_lamp
+        data:
+          brightness: 255
+          color_temp: 369
+
+toggle_bright_bedside_off:
+  sequence:
+      - service: light.turn_off
+        entity_id: light.bedside_lamp
+
+toggle_colorloop_bedside:
+  sequence:
+  - service_template: script.toggle_colorloop_bedside_{% if is_state('light.bedside_lamp', 'off') %}on{% else %}off{% endif %}
+
+toggle_colorloop_bedside_on:
+  sequence:
+      - service: light.turn_on
+        entity_id: light.bedside_lamp
+        data:
+          brightness: 100
+          effect: colorloop
+
+toggle_colorloop_bedside_off:
+  sequence:
+      - service: light.turn_off
+        entity_id: light.bedside_lamp

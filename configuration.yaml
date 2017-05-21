@@ -1,0 +1,74 @@
+homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: !secret elevation
+  unit_system: imperial
+  time_zone: !secret time_zone
+  customize: !include customize/customize.yaml
+  customize_glob: !include customize/glob.yaml
+
+group: !include groups.yaml
+
+frontend:
+
+config:
+
+http:
+  api_password: !secret api_password
+  base_url: !secret base_url
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
+
+updater:
+
+discovery:
+  ignore:
+    - netgear_router
+
+conversation:
+
+history:
+
+logbook:
+
+sun:
+
+sensor: !include_dir_merge_list sensor
+
+device_tracker:
+  - platform: netgear
+    host: !secret router_ip
+    username: !secret router_user
+    password: !secret router_password
+    consider_home: 300
+    track_new_devices: false
+
+media_player:
+  - platform: plex
+  - platform: cast
+
+zwave: !include_dir_merge_named zwave
+
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+
+tts:
+  - platform: google
+
+ifttt:
+  key: !secret ifttt_key
+
+ecobee:
+  api_key: !secret ecobee_key
+
+automation: !include automations.yaml
+
+apiai: !include_dir_merge_named apiai
+
+switch: !include_dir_merge_list switch
+
+script: !include_dir_merge_named script
+
+weblink: !include_dir_merge_named weblink

@@ -1,0 +1,56 @@
+device_tracker.devin:
+  entity_picture: !secret devin_picture
+device_tracker.emily:
+  entity_picture: !secret emily_picture
+light.dining_room_light_level_8_0:
+  friendly_name: Dining Room
+light.entry_light_level_7_0:
+  friendly_name: Entry
+light.kitchen_light_level_5_0:
+  friendly_name: Kitchen
+light.recessed_lights_level_9_0:
+  friendly_name: Living Room
+light.family_room_recessed_lights_level_16_0:
+  friendly_name: Family Room
+switch.outside_lights_switch_6_0:
+  friendly_name: Outside
+  icon: mdi:lightbulb
+switch.upstairs_hall_switch_14_0:
+  friendly_name: Upstairs Hallway
+  icon: mdi:lightbulb
+switch.downstairs_hallway_switch_17_0:
+  friendly_name: Downstairs Hallway
+  icon: mdi:lightbulb
+switch.downstairs_stairway_switch_15_0:
+  friendly_name: Downstairs Stairway
+  icon: mdi:lightbulb
+sensor.downstairs_nest_protect_battery_health:
+  icon: mdi:battery
+  friendly_name: Battery
+sensor.upstairs_nest_protect_battery_health:
+  icon: mdi:battery
+  friendly_name: Battery
+sensor.downstairs_nest_protect_smoke_status:
+  icon: mdi:fire
+  friendly_name: Smoke Status
+sensor.upstairs_nest_protect_smoke_status:
+  icon: mdi:fire
+  friendly_name: Smoke Status
+sensor.downstairs_nest_protect_co_status:
+  icon: mdi:skull
+  friendly_name: CO Status
+sensor.upstairs_nest_protect_co_status:
+  icon: mdi:skull
+  friendly_name: CO Status
+binary_sensor.upstairs_nest_protect_online:
+  friendly_name: Online
+binary_sensor.downstairs_nest_protect_online:
+  friendly_name: Online
+group.sunset_lights:
+  hidden: true
+group.inside_lights:
+  hidden: true
+group.all_automations:
+  hidden: false
+group.all_scripts:
+  hidden: false
