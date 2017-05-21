@@ -1,0 +1,139 @@
+  - platform: template
+    sensors:
+      front_door:
+        friendly_name: 'front door'
+        value_template: >-
+          {% if states.binary_sensor.front_door_63.state == 'on' %}
+            open
+          {% elif states.binary_sensor.front_door_63.state == 'off' %}
+            closed
+          {% else %}
+            ???
+          {% endif %}
+        icon_template: '{%- if is_state("binary_sensor.front_door_63", "on") %}mdi:logout{%- elif is_state("binary_sensor.front_door_63", "off") %}mdi:lock{%- endif %}'
+
+  - platform: template
+    sensors:
+      garage_entry_door:
+        friendly_name: 'garage entry door'
+        value_template: >-
+          {% if states.binary_sensor.garage_entry_door_69.state == 'on' %}
+            open
+          {% elif states.binary_sensor.garage_entry_door_69.state == 'off' %}
+            closed
+          {% else %}
+            ???
+          {% endif %}
+        icon_template: '{%- if is_state("binary_sensor.garage_entry_door_69", "on") %}mdi:logout{%- elif is_state("binary_sensor.garage_entry_door_69", "off") %}mdi:lock{%- endif %}'
+
+  - platform: template
+    sensors:
+      kitchen_door:
+        friendly_name: 'kitchen door'
+        value_template: >-
+          {% if states.binary_sensor.kitchen_door_64.state == 'on' %}
+            open
+          {% elif states.binary_sensor.kitchen_door_64.state == 'off' %}
+            closed
+          {% else %}
+            ???
+          {% endif %}
+        icon_template: '{%- if is_state("binary_sensor.kitchen_door_64", "on") %}mdi:logout{%- elif is_state("binary_sensor.kitchen_door_64", "off") %}mdi:lock{%- endif %}'
+
+  - platform: template
+    sensors:
+      rooftop_door:
+        friendly_name: 'rooftop door'
+        value_template: >-
+          {% if states.binary_sensor.rooftop_door_72.state == 'on' %}
+            open
+          {% elif states.binary_sensor.rooftop_door_72.state == 'off' %}
+            closed
+          {% else %}
+            ???
+          {% endif %}
+        icon_template: '{%- if is_state("binary_sensor.rooftop_door_72", "on") %}mdi:logout{%- elif is_state("binary_sensor.rooftop_door_72", "off") %}mdi:lock{%- endif %}'
+
+  - platform: template
+    sensors:
+      entry_motion_sensor:
+        friendly_name: 'entry motion sensor'
+        value_template: >-
+          {% if states.binary_sensor.entry_motion_sensor_47.state == 'on' %}
+            tripped
+          {% elif states.binary_sensor.entry_motion_sensor_47.state == 'off' %}
+            idle
+          {% else %}
+            ???
+          {% endif %}
+        icon_template: '{%- if is_state("binary_sensor.entry_motion_sensor_47", "on") %}mdi:alert{%- elif is_state("binary_sensor.entry_motion_sensor_47", "off") %}mdi:check{%- endif %}'
+
+  - platform: template
+    sensors:
+      garage_motion_sensor:
+        friendly_name: 'garage motion sensor'
+        value_template: >-
+          {% if states.binary_sensor.garage_motion_sensor_73.state == 'on' %}
+            tripped
+          {% elif states.binary_sensor.garage_motion_sensor_73.state == 'off' %}
+            idle
+          {% else %}
+            ???
+          {% endif %}
+        icon_template: '{%- if is_state("binary_sensor.garage_motion_sensor_73", "on") %}mdi:alert{%- elif is_state("binary_sensor.garage_motion_sensor_73", "off") %}mdi:check{%- endif %}'
+
+  - platform: template
+    sensors:
+      front_bedroom_motion_sensor:
+        friendly_name: 'front bedroom motion sensor'
+        value_template: >-
+          {% if states.binary_sensor.front_bedroom_motion_sensor_50.state == 'on' %}
+            tripped
+          {% elif states.binary_sensor.front_bedroom_motion_sensor_50.state == 'off' %}
+            idle
+          {% else %}
+            ???
+          {% endif %}
+        icon_template: '{%- if is_state("binary_sensor.front_bedroom_motion_sensor_50", "on") %}mdi:alert{%- elif is_state("binary_sensor.front_bedroom_motion_sensor_50", "off") %}mdi:check{%- endif %}'
+
+  - platform: template
+    sensors:
+      nursery_motion_sensor:
+        friendly_name: 'nursery motion sensor'
+        value_template: >-
+          {% if states.binary_sensor.nursery_motion_sensor_20.state == 'on' %}
+            tripped
+          {% elif states.binary_sensor.nursery_motion_sensor_20.state == 'off' %}
+            idle
+          {% else %}
+            ???
+          {% endif %}
+        icon_template: '{%- if is_state("binary_sensor.nursery_motion_sensor_20", "on") %}mdi:alert{%- elif is_state("binary_sensor.nursery_motion_sensor_20", "off") %}mdi:check{%- endif %}'
+
+  - platform: template
+    sensors:
+      back_bedroom_motion_sensor:
+        friendly_name: 'back bedroom motion sensor'
+        value_template: >-
+          {% if states.binary_sensor.back_bedroom_motion_sensor_80.state == 'on' %}
+            tripped
+          {% elif states.binary_sensor.back_bedroom_motion_sensor_80.state == 'off' %}
+            idle
+          {% else %}
+            ???
+          {% endif %}
+        icon_template: '{%- if is_state("binary_sensor.back_bedroom_motion_sensor_80", "on") %}mdi:alert{%- elif is_state("binary_sensor.back_bedroom_motion_sensor_80", "off") %}mdi:check{%- endif %}'
+
+  - platform: template
+    sensors:
+      rooftop_motion_sensor:
+        friendly_name: 'rooftop motion sensor'
+        value_template: >-
+          {% if states.binary_sensor.rooftop_motion_sensor_75.state == 'on' %}
+            tripped
+          {% elif states.binary_sensor.rooftop_motion_sensor_75.state == 'off' %}
+            idle
+          {% else %}
+            ???
+          {% endif %}
+        icon_template: '{%- if is_state("binary_sensor.rooftop_motion_sensor_75", "on") %}mdi:alert{%- elif is_state("binary_sensor.rooftop_motion_sensor_75", "off") %}mdi:check{%- endif %}'
