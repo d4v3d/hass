@@ -20,15 +20,19 @@
   sensors:
     coat_closet_status:
       value_template: '{% if is_state("sensor.coat_closet_door_alarm_level_10_1", "0") %}Closed{% else %}Open{% endif %}'
+      icon_template: '{% if is_state("sensor.coat_closet_door_alarm_level_10_1", "0") %}mdi:lock{% else %}mdi:locker{% endif %}'
       friendly_name: Coat Closet Status
     master_closet_status:
       value_template: '{% if is_state("sensor.master_closet_door_alarm_level_11_1", "0") %}Closed{% else %}Open{% endif %}'
+      icon_template: '{% if is_state("sensor.master_closet_door_alarm_level_11_1", "0") %}mdi:lock{% else %}mdi:locker{% endif %}'
       friendly_name: Master Closet Status
     front_door_status:
       value_template: '{% if is_state("sensor.front_door_alarm_level_13_1", "0") %}Closed{% else %}Open{% endif %}'
+      icon_template: '{% if is_state("sensor.front_door_alarm_level_13_1", "0") %}mdi:lock{% else %}mdi:locker{% endif %}'
       friendly_name: Front Door Status
     entry_garage_door_status:
       value_template: '{% if is_state("sensor.entry_garage_door_alarm_level_12_1", "0") %}Closed{% else %}Open{% endif %}'
+      icon_template: '{% if is_state("sensor.entry_garage_door_alarm_level_12_1", "0") %}mdi:lock{% else %}mdi:locker{% endif %}'
       friendly_name: Entry Garage Door Status
     coat_closet_battery:
       value_template: '{{states.zwave.coat_closet_door_10.attributes.battery_level}}'
@@ -51,7 +55,7 @@
       friendly_name: Entry Garage Door
       unit_of_measurement: '%'
     display_sun:
-      value_template: '{{states.sun.sun.state}}'
+      value_template: '{% if is_state("sun.sun", "above_horizon") %}Up{% else %}Set{% endif %}'
       icon_template: '{% if is_state("sun.sun", "above_horizon") %}mdi:weather-sunny{% else %}mdi:weather-night{% endif %}'
       friendly_name: Sun
 - platform: systemmonitor

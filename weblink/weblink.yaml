@@ -2,3 +2,12 @@ entities:
   - name: Router
     url: http://192.168.1.1/
     icon: mdi:router-wireless
+  - name: Deluge
+    url: http://192.168.1.16:8112/
+    icon: mdi:cloud-download
+  - name: ESXi Web
+    url: https://192.168.1.15/ui/
+    icon: mdi:server-network
+  - name: Plex
+    url: http://192.168.1.16:32400/web/index.html
+    icon: mdi:plex

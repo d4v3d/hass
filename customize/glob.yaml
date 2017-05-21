@@ -16,7 +16,5 @@
   hidden: true
 "binary_sensor.*_sensor_*_0":
   hidden: true
-"sensor.*_status":
-  icon: mdi:locker
 "zwave.*":
   hidden: true
